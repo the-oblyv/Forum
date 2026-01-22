@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #19003b;
+  color: white;
+}
+
+header {
+  padding: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+#logo {
+  margin: 0;
+}
+
+main {
+  padding: 20px;
+}
+
+.poll-option {
+  padding: 10px;
+  margin: 8px 0;
+  background: rgba(255,255,255,0.08);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.poll-option:hover {
+  background: rgba(255,255,255,0.15);
+}
