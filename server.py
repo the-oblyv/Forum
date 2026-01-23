@@ -106,4 +106,33 @@ def get_post(pid):
 def serve(path):
     return send_from_directory("public", "index.html")
 
+def init_db():
+    con = sqlite3.connect(DB)
+    con.executescript("""
+    CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      email TEXT UNIQUE,
+      password_hash TEXT,
+      verified INTEGER DEFAULT 0,
+      verification_code TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS communities (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT UNIQUE,
+      creator_id INTEGER
+    );
+
+    CREATE TABLE IF NOT EXISTS posts (
+      id TEXT PRIMARY KEY,
+      community TEXT,
+      title TEXT,
+      slug TEXT,
+      author_id INTEGER
+    );
+    """)
+    con.commit()
+    con.close()
+
+
 app.run(debug=True)
